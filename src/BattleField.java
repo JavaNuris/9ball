@@ -72,12 +72,18 @@ public class BattleField {
         int currentVarInCell = player.getBalls(numberCell);
         varibleForOne = numberCell + currentVarInCell;
          int minus = 9 - numberCell;
+
+        if(currentVarInCell == 1){
+            player.setBalls(numberCell , 0);
+            player.setBalls(numberCell+1 , player.getBalls(numberCell+1)+1);
+        }
+        else if(currentVarInCell == 0){
+            player.setBalls(numberCell , 0);
+        }else {
         for (int z = 0; z < minus; z++) {
-            player.setBalls(numberCell ,1);
             if(z == 0){
-                /*были проблемы с перекидование шариков , в одну ячейку прибовлялось 2 шарика*/
-                //playerOne.setBalls(numberCell+z, playerOne.getBalls(numberCell+ z) + 1);
             }else {
+                player.setBalls(numberCell ,1);
                 player.setBalls(numberCell+z, player.getBalls(numberCell+ z) + 1);
             }
             leftSteps =varibleForOne-z-numberCell-1;
@@ -87,7 +93,7 @@ public class BattleField {
         twos(leftSteps);
         else if(player == getPlayerTwo()) {
             ones(leftSteps);
-        }
+        }}
     }
 
 
