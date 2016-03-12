@@ -5,7 +5,7 @@ public class BattleField {
     private Player playerOne;
     private Player playerTwo;
     private int varibleForOne = 0;
-    private int varibleForTwo = 0;
+
     private int currentBasKetNumberPlayerOne = 0;
     private int currentBasKetNumberPlayerTwo = 0;
     private int leftSteps = 0;
@@ -68,44 +68,28 @@ public class BattleField {
     }
 
     /*Логика первого игрока*/
-    public void mainLogicPlayerOne(int numberCell) {
-        int currentVarInCell = playerOne.getBalls(numberCell);
+    public void mainLogicPlayer(Player player ,int numberCell) {
+        int currentVarInCell = player.getBalls(numberCell);
         varibleForOne = numberCell + currentVarInCell;
          int minus = 9 - numberCell;
         for (int z = 0; z < minus; z++) {
-            playerOne.setBalls(numberCell ,1);
+            player.setBalls(numberCell ,1);
             if(z == 0){
                 /*были проблемы с перекидование шариков , в одну ячейку прибовлялось 2 шарика*/
                 //playerOne.setBalls(numberCell+z, playerOne.getBalls(numberCell+ z) + 1);
             }else {
-                playerOne.setBalls(numberCell+z, playerOne.getBalls(numberCell+ z) + 1);
+                player.setBalls(numberCell+z, player.getBalls(numberCell+ z) + 1);
             }
             leftSteps =varibleForOne-z-numberCell-1;
         }
         System.out.println(leftSteps);
+        if(player == getPlayerOne())
         twos(leftSteps);
-    }
-    /*Логика второго игрока*/
-    public void mainLogicPlayerTwo(int numberCell) {
-
-        int currentVarInCell = playerTwo.getBalls(numberCell);
-        varibleForTwo = numberCell + currentVarInCell;
-        int minus = 9 - numberCell;
-        for (int z = 0; z < minus; z++) {
-            playerTwo.setBalls(numberCell ,1);
-            if(z == 0){
-                /*были проблемы с перекидование шариков , в одну ячейку прибовлялось 2 шарика*/
-                //playerOne.setBalls(numberCell+z, playerOne.getBalls(numberCell+ z) + 1);
-            }else {
-                playerTwo.setBalls(numberCell+z, playerTwo.getBalls(numberCell+ z) + 1);
-            }
-
-            leftSteps =varibleForTwo-z-numberCell-1;
+        else if(player == getPlayerTwo()) {
+            ones(leftSteps);
         }
-        System.out.println(leftSteps);
-        ones(leftSteps);
-
     }
+
 
     /*тут теперь просто расскидываем шарики , используеться рекурсия*/
     /*ячейки первого игрока*/

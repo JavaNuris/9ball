@@ -27,8 +27,8 @@ public class Main  {
             System.out.println("Введите целое число: ");
             if (sc.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
                 // считывает целое число с потока ввода и сохраняем в переменную
-                battleField.mainLogicPlayerTwo(sc.nextInt());
-                battleField.mainLogicPlayerOne(sc.nextInt());
+                //battleField.mainLogicPlayerTwo(sc.nextInt());
+               battleField.mainLogicPlayer(battleField.getPlayerTwo(),sc.nextInt());
                 battleField.cardsReadPlayerOne();
                 System.out.println();
                 System.out.print("-------------------------------------");
