@@ -73,20 +73,53 @@ public class BattleField {
         varibleForOne = numberCell + currentVarInCell;
          int minus = 9 - numberCell;
 
-        if(currentVarInCell == 1){
+        if(numberCell == 8){
+            player.setBalls(numberCell , 1);
+        }
+       if(numberCell == 8 &&currentVarInCell == 1 ){
+
+            if(player == playerOne){
+            playerTwo.setBalls(0 , playerTwo.getBalls(0)+1);
+                if(playerTwo.getBalls(0)% 2 == 0){
+                    playerOne.setKingBalls(0 , playerOne.getBalls(0));
+                    currentBasKetNumberPlayerOne += playerOne.getKingBalls(0);
+                    playerTwo.setBalls(0 , 0);
+                }
+
+            }
+            if(player == playerTwo){
+                playerOne.setBalls(0 , playerOne.getBalls(0)+1);
+                if(playerOne.getBalls(0)% 2 == 0){
+                    playerTwo.setKingBalls(0 , playerTwo.getBalls(0));
+                    currentBasKetNumberPlayerTwo += playerTwo.getKingBalls(0);
+                    playerOne.setBalls(0 , 0);
+                }
+
+            }
+
+
+            player.setBalls(numberCell , 0);
+        }
+       else if(currentVarInCell == 1){
             player.setBalls(numberCell , 0);
             player.setBalls(numberCell+1 , player.getBalls(numberCell+1)+1);
+
+
         }
         else if(currentVarInCell == 0){
             player.setBalls(numberCell , 0);
         }else {
         for (int z = 0; z < minus; z++) {
             if(z == 0){
-            }else {
+
+            }
+            else {
                 player.setBalls(numberCell ,1);
                 player.setBalls(numberCell+z, player.getBalls(numberCell+ z) + 1);
+            }   if(playerTwo.getBalls(0)%2==0){
+                playerTwo.setBalls(0 , 0);
             }
-            leftSteps =varibleForOne-z-numberCell-1;
+            leftSteps = varibleForOne-z-numberCell-1;
         }
         System.out.println(leftSteps);
         if(player == getPlayerOne())
@@ -106,7 +139,10 @@ public class BattleField {
                 playerOne.setBalls(z, playerOne.getBalls(z) + 1);
                 s--;/*лиюо дискремент*/
                   /*обнуляеет ячейку если она равна 0*/
-                if(playerOne.getBalls(x-1)%2 == 0){
+                if(playerTwo.getBalls(x-1)%2 == 0){
+                    System.out.println("Метка");
+                }
+                else if(playerOne.getBalls(x-1)%2 == 0){
                     /*Копим в казне шарики*/
                     playerTwo.setKingBalls(0 , playerOne.getBalls(x-1));
                     currentBasKetNumberPlayerTwo += playerTwo.getKingBalls(0);
@@ -119,7 +155,6 @@ public class BattleField {
                 s--;/*лиюо дискремент*/
             }
         }
-        System.out.println(s+ "на первом");
 
         if (s > 0) {
                 twos(s);
@@ -135,7 +170,7 @@ public class BattleField {
                 playerTwo.setBalls(z, playerTwo.getBalls(z) + 1);
                 s--;/*лиюо дискремент*/
                 /*обнуляеет ячейку если она равна 0*/
-                if(playerTwo.getBalls(x-1)%2 == 0){
+            if(playerTwo.getBalls(x-1)%2 == 0){
                     playerOne.setKingBalls(0 , playerTwo.getBalls(x-1));
                     currentBasKetNumberPlayerOne += playerOne.getKingBalls(0);
                     playerTwo.setBalls(x-1 ,0);
@@ -143,6 +178,7 @@ public class BattleField {
             }
         }else {
             for (int z = 0; z < 9; z++) {
+
                 playerTwo.setBalls(z, playerTwo.getBalls(z) + 1);
                 s--;
             }
