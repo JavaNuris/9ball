@@ -1,18 +1,15 @@
+import Ball.Ball;
+
 /**
  * Created by Admin on 08.03.2016.
  */
 public class Player {
 
     private String name;
-    private int[] cells = new int[9];
-    private int[] basket = new int [1];
-
-    public int[] getKing() {
-        return basket;
-    }
-
-    public int[] getCells() {
-        return cells;
+    private Ball[] balls = new Ball[9];
+    private Ball[] basket = new Ball[1];
+    public Ball[] getCells() {
+        return balls;
     }
 
     public String getName() {
@@ -24,16 +21,18 @@ public class Player {
     }
 
     public void setBalls(int cell, int value) {
+        balls[cell] = new Ball(value);
+    }
+    public void setKingBall(int basketCell , int value){
+        basket[basketCell] = new Ball(value);
+    }
 
-        cells[cell] = value;
-    }
-    public void setKingBalls(int basketCell , int value){
-        basket[basketCell] = value;
-    }
     public int getBalls(int cell) {
-        return cells[cell];
+        return balls[cell].getDateNumber() ;
     }
+
     public int getKingBalls(int kingCell){
-        return basket[kingCell];
+        return  basket[kingCell].getDateNumber();
     }
+
 }
